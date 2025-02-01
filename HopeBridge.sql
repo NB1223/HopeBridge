@@ -51,4 +51,58 @@ CREATE TABLE IF NOT EXISTS Donation (
     FOREIGN KEY (request_id) REFERENCES Request(request_id) ON DELETE CASCADE
 );
 
+ALTER TABLE Request
+ADD COLUMN requested_quantity INT NOT NULL;
 
+DELIMITER //
+CREATE PROCEDURE InsertDonation(
+    IN donor_id_param INT,
+    IN request_id_param INT,
+    IN items_donated_param TEXT,
+    IN quantity_param INT,
+    IN pickup_location_param VARCHAR(255),
+    IN drop_location_param VARCHAR(255)
+)
+BEGIN
+    DECLARE available_qty INT;
+
+    -- Fetch the requested quantity for the given request_id
+    SELECT requested_quantity INTO available_qty 
+    FROM Request 
+    WHERE request_id = request_id_param;
+
+    -- Check if the requested quantity is sufficient
+    IF available_qty IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid request ID';
+    ELSEIF quantity_param > available_qty THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Donation quantity exceeds requested quantity';
+    ELSE
+        -- Insert donation if the quantity is within the requested limit
+        INSERT INTO Donation (donor_id, request_id, items_donated, quantity, pickup_location, drop_location)
+        VALUES (donor_id_param, request_id_param, items_donated_param, quantity_param, pickup_location_param, drop_location_param);
+
+        -- Update the requested quantity in Request table
+        UPDATE Request
+        SET requested_quantity = requested_quantity - quantity_param
+        WHERE request_id = request_id_param;
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER After_Insert_Donation
+AFTER INSERT ON Donation
+FOR EACH ROW
+BEGIN
+    -- Subtract the donated quantity from the requested_quantity in the Request table
+    UPDATE Request
+    SET requested_quantity = requested_quantity - NEW.quantity
+    WHERE request_id = NEW.request_id;
+END;
+//
+
+DELIMITER ;

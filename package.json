@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "npm": "^11.1.0"
+    "npm": "^11.1.0",
+    "react-router-dom": "^7.1.5"
   },
   "devDependencies": {
     "web-vitals": "^4.2.4"
