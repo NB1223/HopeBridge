@@ -39,12 +39,12 @@ export default function LoginPage() {
       if (response.ok) {
         if (loginType === "ngo") {
           localStorage.setItem("ngo_unique_id", formData.unique_id); // Store NGO unique_id
-          navigate("/NGO_Dashboard"); // Redirect to NGO Dashboard
+          navigate("/ngo-dashboard"); // Redirect to NGO Dashboard
         } else {
           localStorage.setItem("donor_email", formData.email); // Store Donor email
           navigate("/Donor_Dashboard"); // Redirect to Donor Dashboard
         }
-        alert("Login successful!");
+        alert(`Login successful! Your Unique ID: ${formData.unique_id}`);
       } else {
         setErrorMessage(data.message || "Invalid login credentials.");
       }

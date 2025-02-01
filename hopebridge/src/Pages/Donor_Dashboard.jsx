@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Donor_Dash.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const DonorDashboard = () => {
+    const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
 
   // Fetch donation requests from the backend API
@@ -64,7 +67,7 @@ const DonorDashboard = () => {
             <p className={`urgency ${getUrgencyLevel(request.donation_deadline)}`}>
               Urgency: {getUrgencyLevel(request.donation_deadline)}
             </p>
-            <button className="donate-button">Donate Now</button>
+            <button className="donate-button" onClick={() => navigate('/Donate')}>Donate Now</button>
           </div>
         ))}
       </div>

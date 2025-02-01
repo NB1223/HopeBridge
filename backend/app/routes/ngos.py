@@ -106,36 +106,42 @@ def add_request():
 
     return jsonify({"message": "Request added successfully"}), 201
 
-# Get all donation requests
-@ngo_bp.route('/requests', methods=['GET'])
-def get_requests():
-    requests = Request.query.all()
-    if not requests:
-        return jsonify([])  # Ensure response is always an array
-    
-    request_list = [
-        {
-            "request_id": request.request_id,
-            "ngo_id": request.ngo_id,
-            "ngo_name": request.ngo_name,
-            "request_type": request.request_type,
-            "request_description": request.request_description,
-            "donation_deadline": request.donation_deadline.strftime("%Y-%m-%d"),
-            "quantity": request.quantity
-        }
-        for request in requests
-    ]
-    return jsonify(request_list)
-
-# Get all requests for a specific NGO
-@ngo_bp.route('/<unique_id>/requests', methods=['GET'])
-def get_requests_for_ngo(unique_id):
+# Get all donation requests for a specific NGO
+@ngo_bp.route('/requests/<string:unique_id>', methods=['GET'])
+def get_requests(unique_id):
+    # Fetch NGO using unique_id
     ngo = NGO.query.filter_by(unique_id=unique_id).first()
-    
+
+    # If NGO not found
     if not ngo:
         return jsonify({"message": "NGO not found"}), 404
 
-    requests = Request.query.filter_by(ngo_id=ngo.ngo_id).all()
-    request_list = [request.to_dict() for request in requests]
+    # Get the ngo_id from the NGO record
+    ngo_id = ngo.ngo_id
+
+    # Fetch requests for that specific ngo_id
+    requests = Request.query.filter_by(ngo_id=ngo_id).all()
+
+    # If no requests are found
+    if not requests:
+        return jsonify([])  # Return an empty list if no requests found
+
+    # Format the response with request details
+    request_list = [
+        {
+            "request_id": req.request_id,
+            "ngo_id": req.ngo_id,
+            "ngo_name": req.ngo_name,
+            "request_type": req.request_type,
+            "request_description": req.request_description,
+            "ngo_state": req.ngo_state,
+            "ngo_district": req.ngo_district,
+            "donation_deadline": req.donation_deadline.strftime("%Y-%m-%d"),
+            "quantity": req.quantity
+        }
+        for req in requests
+    ]
     
-    return jsonify(request_list)
+    return jsonify(request_list), 200
+
+
