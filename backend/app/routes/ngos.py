@@ -21,7 +21,23 @@ def register_ngo():
     db.session.commit()
     return jsonify({"message": "NGO registered successfully"}), 201
 
-@ngo_bp.route("/list", methods=["GET"])
-def list_ngos():
+@ngo_bp.route('/list', methods=['GET'])
+def get_ngos():
     ngos = NGO.query.all()
-    return jsonify([ngo.to_dict() for ngo in ngos])
+    if not ngos:
+        return jsonify([])  # Ensure response is always an array
+    
+    ngo_list = [
+        {
+            "ngo_id": ngo.ngo_id,
+            "ngo_name": ngo.ngo_name,
+            "ngo_type": ngo.ngo_type,
+            "sector": ngo.sector,
+            "state": ngo.state,
+            "district": ngo.district,
+            "unique_id": ngo.unique_id
+        }
+        for ngo in ngos
+    ]
+    return jsonify(ngo_list)
+

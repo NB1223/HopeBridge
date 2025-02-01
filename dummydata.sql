@@ -9,11 +9,11 @@ VALUES
     ('superadmin', 'hashed_admin_password_1'),
     ('manager1', 'hashed_admin_password_2');
 
-INSERT INTO NGO (state, district, sector, ngo_type, ngo_name, unique_id)
+INSERT INTO NGO (state, district, sector, ngo_type, ngo_name, unique_id, password)
 VALUES 
-    ('California', 'Los Angeles', 'Education', 'Non-Profit', 'Hope for Kids', 'NGO12345'),
-    ('Texas', 'Houston', 'Healthcare', 'Charitable Trust', 'Healing Hands', 'NGO67890'),
-    ('New York', 'Brooklyn', 'Food Supply', 'Foundation', 'Meals for All', 'NGO11223');
+    ('California', 'Los Angeles', 'Education', 'Non-Profit', 'Hope for Kids', 'NGO12345', 'dummyhashedpassword'),
+    ('Texas', 'Houston', 'Healthcare', 'Charitable Trust', 'Healing Hands', 'NGO67890', 'dummyhashedpassword'),
+    ('New York', 'Brooklyn', 'Food Supply', 'Foundation', 'Meals for All', 'NGO11223', 'dummyhashedpassword');
 
 INSERT INTO Request (ngo_id, ngo_name, request_type, request_description, ngo_state, ngo_district, donation_deadline)
 VALUES 
