@@ -70,7 +70,18 @@ const DonorDashboard = () => {
             <p className={`urgency ${getUrgencyLevel(request.donation_deadline)}`}>
               Urgency: {getUrgencyLevel(request.donation_deadline)}
             </p>
-            <button className="donate-button" onClick={() => navigate('/Donate')}>Donate Now</button>
+            <button 
+              className="donate-button" 
+              onClick={() => navigate('/Donate', {
+                state: { 
+                  ngo: request.ngo_name, 
+                  donatingItems: request.request_type 
+                }
+              })}
+            >
+              Donate Now
+            </button>
+
           </div>
         ))}
       </div>
