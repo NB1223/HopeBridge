@@ -1,0 +1,108 @@
+/* Full-screen container with split layout */
+.container-login {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Left section for the image */
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right section for the login form */
+.login-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 40px;
+    font-family: "Raleway", Arial, sans-serif;
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Login Heading */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Donor button */
+button {
+    background-color: #026901;
+    color: white;
+}
+
+button:hover {
+    background-color: #014a01;
+}
+
+/* Back Button */
+.back-btn {
+    margin-top: 10px;
+    background-color: gray;
+}
+
+.back-btn:hover {
+    background-color: darkgray;
+}
+
+/* Switch Login Type */
+.switch-text {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #014a01;
+}
+
+.switch-link {
+    color: #026901;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.switch-link:hover {
+    text-decoration: underline;
+}
