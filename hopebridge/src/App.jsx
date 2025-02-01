@@ -8,11 +8,13 @@ import Register_Donor from './Pages/Donor_Register.jsx';
 import LoginPage from './Pages/Login.jsx';
 import NGOsPage from './Pages/Ngo_Intro.jsx';
 import Register_NGO from './Pages/NGO_Register.jsx';
+import NGO_Dash from './Pages/NGO_Dash.jsx';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <NGO_Dash/>
         {/* <NavbarComponent /> */}
         {/* <AboutUsPage/> */}
         {/* <Register_Donor/> */}

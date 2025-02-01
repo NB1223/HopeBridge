@@ -28,11 +28,3 @@ VALUES
     (3, 3, 'Winter Jackets, Scarves, Gloves', 30, '456 Park Ave, NY', 'Meals for All Distribution Center');
 
 
-{
-  "name": "Jeevana",
-  "phone_number": "9876543210",
-  "email": "jeevana@example.com",
-  "state": "California",
-  "district": "Los Angeles",
-  "password": "abc123"
-}
