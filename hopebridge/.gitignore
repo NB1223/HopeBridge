@@ -7,8 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Ignore config.py in the backend/app/ directory
-backend/app/config.py
+# Ignore all Python config files
+*.pyc
+config.py
+
 
 
 node_modules
