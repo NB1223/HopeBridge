@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <NavbarComponent />
+        <Donor_Dash/>
         <Routes>
           <Route path="/Donor_Dashboard" element={<Donor_Dash />} />
         </Routes>
