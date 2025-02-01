@@ -1,0 +1,116 @@
+/* Full-screen container with split layout */
+.container-register {
+    display: flex;
+    height: 550px;
+    width: 90vw; /* Changed to 100vw for full-width layout */
+    box-shadow: #333;
+}
+
+/* Left section for the image */
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+    /* Ensure the image section doesn't get stretched too large */
+    height: 100%;
+}
+
+.image-section img {
+    width: 100%; /* Image fills the left section */
+    height: 100%; /* Ensures the image takes the full height */
+    object-fit: cover; /* Ensures image covers the entire space */
+}
+
+/* Right section for the registration form */
+.register-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    font-family: "Raleway", Arial, sans-serif;
+    /* padding: 20px; */
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1); /* Added shadow for a clean look */
+}
+
+/* Heading */
+.NGO-reg {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    height: -60px;
+    width: 100%;
+    max-width: 350px; /* Limiting max width to make form more compact */
+    /* padding: 20px; */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow for visual depth */
+}
+
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: #014a01;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Register Button */
+button[type="submit"] {
+    background-color: #026901;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #014a01;
+}
+
+/* Back Button Styling */
+.back-btn {
+    background-color: rgb(107, 107, 107);
+    color: white;
+}
+
+.back-btn:hover {
+    background-color: rgb(59, 131, 79);
+}
+
+/* Button Container */
+.btn-container {
+    display: flex;
+    justify-content: space-between; /* Space between the buttons */
+    width: 100%;
+    gap: 10px; /* Optional, adds space between buttons */
+}
+
+/* Prevents form overflow */
+.register-form input, .register-form select, .register-section {
+    box-sizing: border-box; /* Ensures padding doesn't affect layout */
+}
