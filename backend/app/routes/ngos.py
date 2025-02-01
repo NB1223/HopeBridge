@@ -1,13 +1,28 @@
+import hashlib
+
 from app.models import NGO, db
 from flask import Blueprint, jsonify, request
-from werkzeug.security import generate_password_hash
 
 ngo_bp = Blueprint("ngo", __name__)
+# login_bp = Blueprint('ngologin', __name__)
+
+# Hash password manually using hashlib
+def hash_password(password):
+    return hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+# Check password manually using hashlib (matching hashed passwords)
+def check_password(stored_hash, password):
+    return stored_hash == hashlib.sha256(password.encode('utf-8')).hexdigest()
 
 @ngo_bp.route("/register", methods=["POST"])
 def register_ngo():
     data = request.get_json()
-    hashed_password = generate_password_hash(data["password"], method="sha256")
+
+    # Check if NGO with the same unique_id already exists
+    if NGO.query.filter_by(unique_id=data["unique_id"]).first():
+        return jsonify({"message": "NGO with this unique ID already exists"}), 400
+
+    hashed_password = hash_password(data["password"])  # Hash password using hashlib
     new_ngo = NGO(
         state=data["state"],
         district=data["district"],
@@ -15,7 +30,7 @@ def register_ngo():
         ngo_type=data["ngo_type"],
         ngo_name=data["ngo_name"],
         unique_id=data["unique_id"],
-        password=hashed_password
+        password=hashed_password  # Store hashed password
     )
     db.session.add(new_ngo)
     db.session.commit()
@@ -40,4 +55,21 @@ def get_ngos():
         for ngo in ngos
     ]
     return jsonify(ngo_list)
+
+# NGO login route using hashlib for password verification
+@ngo_bp.route('/login', methods=['POST'])
+def login_ngo():
+    data = request.get_json()
+    unique_id = data.get('unique_id')
+    password = data.get('password')
+
+    ngo = NGO.query.filter_by(unique_id=unique_id).first()
+    if not ngo:
+        return jsonify({"message": "NGO not found"}), 404
+
+    # Compare the hashed passwords
+    if ngo.password != hashlib.sha256(password.encode('utf-8')).hexdigest():
+        return jsonify({"message": "Invalid password"}), 401
+
+    return jsonify({"message": "NGO logged in successfully"}), 200
 

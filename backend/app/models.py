@@ -1,5 +1,5 @@
 from app import db
-from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class Donor(db.Model):
@@ -12,6 +12,9 @@ class Donor(db.Model):
     state = db.Column(db.String(100), nullable=False)
     district = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(255), nullable=False)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     def to_dict(self):
         return {
@@ -40,6 +43,9 @@ class NGO(db.Model):
     ngo_type = db.Column(db.String(100), nullable=False)
     ngo_name = db.Column(db.String(255), nullable=False)
     unique_id = db.Column(db.String(50), unique=True, nullable=False)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     def to_dict(self):
         return {
