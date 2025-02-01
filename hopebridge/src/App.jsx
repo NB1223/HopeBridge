@@ -5,6 +5,7 @@ import Donor_Dash from './Pages/Donor_Dashboard';
 import NavbarComponent from './Components/NavBar.jsx';
 import NGOsPage from './Pages/Ngo_Intro.jsx';
 import AboutUsPage from './Pages/About_Us.jsx';
+import DonationForm from './Pages/Donor_Form.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/Donor_Dashboard" element={<Donor_Dash />} />
           <Route path="/Partnered_NGOs" element={<NGOsPage/>} />
           <Route path="/About_Us" element={<AboutUsPage/>} />
+          <Route path="/Donate" element={<DonationForm/>} />
         </Routes>
       </Router>
     </div>
