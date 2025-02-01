@@ -1,0 +1,8 @@
+{
+  "name": "Jeevana",
+  "phone_number": "9876543210",
+  "email": "jeevana@example.com",
+  "state": "California",
+  "district": "Los Angeles",
+  "password": "abc123"
+}
