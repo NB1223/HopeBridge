@@ -1,0 +1,84 @@
+{
+    "relevant_emergency_news": [
+        {
+            "title": "Small plane carrying six crashes in northeast Philadelphia",
+            "link": "https://www.today.com/video/small-plane-carrying-six-crashes-in-northeast-philadelphia-230852677859",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Northeast Philadelphia",
+            "is_emergency": true
+        },
+        {
+            "title": "Security footage shows new angles of D.C. crash",
+            "link": "https://www.nbcnews.com/video/security-footage-shows-new-angles-of-d-c-crash-230772805611",
+            "source": "News Source",
+            "published_date": "2025-01-31",
+            "region": "D.C.",
+            "is_emergency": true
+        },
+        {
+            "title": "'The Ice Skating Sisters' were rising stars beloved at their home rink before tragedy struck",
+            "link": "https://www.nbcnews.com/news/us-news/community-mourns-ice-skating-sisters-potomac-crash-rcna190171",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Unknown",
+            "is_emergency": true
+        },
+        {
+            "title": "Officials say Palisades and Eaton wildfires are 100% contained",
+            "link": "https://www.today.com/video/officials-say-palisades-and-eaton-wildfires-are-100-contained-230853701818",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Palisades and Eaton",
+            "is_emergency": true
+        },
+        {
+            "title": "Amid blood shortage, major blood bank cancels appointments after cyberattack",
+            "link": "https://www.nbcnews.com/tech/security/new-york-blood-center-cancels-drives-shortage-cyberattack-rcna190141",
+            "source": "News Source",
+            "published_date": "2025-01-31",
+            "region": "Unknown",
+            "is_emergency": true
+        },
+        {
+            "title": "Clinic helps Myanmar refugees process the trauma of war",
+            "link": "https://www.nbcnews.com/news/world/clinic-helps-myanmar-refugees-process-trauma-war-rcna186737",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Myanmar",
+            "is_emergency": true
+        },
+        {
+            "title": "Deadly Eaton and Palisades fires 100% contained after 24 days",
+            "link": "https://www.nbcnews.com/weather/wildfires/palisades-eaton-fire-la-contained-rcna188338",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Eaton and Palisades",
+            "is_emergency": true
+        },
+        {
+            "title": "Watch: Philadelphia plane crash captured on doorbell cameras",
+            "link": "https://www.bbc.com/news/videos/c3e1dv7wxngo",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Philadelphia",
+            "is_emergency": true
+        },
+        {
+            "title": "Second body found in search for missing sisters last seen in Aberdeen",
+            "link": "https://www.bbc.com/news/articles/c9w5xrvnn72o",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "Aberdeen",
+            "is_emergency": true
+        },
+        {
+            "title": "'Woah that was close': Near-miss warning signs ahead of DC plane crash",
+            "link": "https://www.bbc.com/news/articles/c391pe7lrv2o",
+            "source": "News Source",
+            "published_date": "2025-02-01",
+            "region": "DC",
+            "is_emergency": true
+        }
+    ]
+}

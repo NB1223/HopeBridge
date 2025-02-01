@@ -12,6 +12,7 @@ import NGO_Dash from './Pages/NGO_Dash.jsx';
 import NGOsPage from './Pages/Ngo_Intro.jsx';
 import Register_NGO from './Pages/NGO_Register.jsx';
 import TrackReq from "./Pages/TrackReq.jsx"; // The TrackReq page
+import EmergencyNotifications from './Pages/emer_notif.jsx';
 
 
 function App() {
@@ -37,9 +38,8 @@ function App() {
           
           <Route path="/ngo-dashboard" element={<NGO_Dash />} />
           <Route path="/add-request" element={<AddReq />} />
-          <Route path="/track-requests" element={<TrackReq />} />
-          {/* <Route path="/Notifications" element={<TrackReq />} /> */}
-          <Route path="/add-request" element={<AddReq />} />
+         <Route path="/track-requests" element={<TrackReq />} />
+         <Route path="/Notifications" element={<EmergencyNotifications/>}/>
         </Routes>
       </Router>
     </div>
