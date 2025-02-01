@@ -4,7 +4,6 @@ from app.models import Donor, db
 from flask import Blueprint, jsonify, request
 
 donor_bp = Blueprint("donor", __name__)
-# login_bp = Blueprint('donorlogin', __name__)
 
 # Hash password manually using hashlib
 def hash_password(password):

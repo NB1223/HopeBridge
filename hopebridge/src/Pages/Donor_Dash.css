@@ -50,7 +50,8 @@
   .category,
   .amount,
   .description,
-  .urgency {
+  .urgency,
+  .date {
     font-size: 1rem;
     color: #7f8c8d;
     margin: 5px 0;
@@ -84,15 +85,15 @@
     margin: 5px 0;
   }
   
-  .urgency.high {
+  .urgency.High {
     color: #e74c3c; /* Red for High urgency */
   }
   
-  .urgency.medium {
+  .urgency.Medium {
     color: #f39c12; /* Yellow for Medium urgency */
   }
   
-  .urgency.low {
+  .urgency.Low {
     color: #2ecc71; /* Green for Low urgency */
   }
   

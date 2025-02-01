@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS Request (
     ngo_state VARCHAR(100) NOT NULL,
     ngo_district VARCHAR(100) NOT NULL,
     donation_deadline DATE NOT NULL,
+    quantity INT NOT NULL,
     FOREIGN KEY (ngo_id) REFERENCES NGO(ngo_id) ON DELETE CASCADE
 );
 

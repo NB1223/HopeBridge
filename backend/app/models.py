@@ -69,6 +69,7 @@ class Request(db.Model):
     ngo_state = db.Column(db.String(100), nullable=False)
     ngo_district = db.Column(db.String(100), nullable=False)
     donation_deadline = db.Column(db.Date, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)  # Add quantity column
 
     ngo = db.relationship("NGO", backref=db.backref("requests", cascade="all, delete-orphan"))
 
@@ -81,7 +82,8 @@ class Request(db.Model):
             "request_description": self.request_description,
             "ngo_state": self.ngo_state,
             "ngo_district": self.ngo_district,
-            "donation_deadline": self.donation_deadline.strftime("%Y-%m-%d")
+            "donation_deadline": self.donation_deadline.strftime("%Y-%m-%d"),
+            "quantity": self.quantity  
         }
 
 class Donation(db.Model):

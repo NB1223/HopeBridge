@@ -15,11 +15,11 @@ VALUES
     ('Texas', 'Houston', 'Healthcare', 'Charitable Trust', 'Healing Hands', 'NGO67890', 'dummyhashedpassword'),
     ('New York', 'Brooklyn', 'Food Supply', 'Foundation', 'Meals for All', 'NGO11223', 'dummyhashedpassword');
 
-INSERT INTO Request (ngo_id, ngo_name, request_type, request_description, ngo_state, ngo_district, donation_deadline)
+INSERT INTO Request (ngo_id, ngo_name, request_type, request_description, ngo_state, ngo_district, donation_deadline, quantity)
 VALUES 
-    (1, 'Hope for Kids', 'Food', 'Need food supplies for underprivileged children', 'California', 'Los Angeles', '2024-12-01'),
-    (2, 'Healing Hands', 'Money', 'Fundraising for medical aid', 'Texas', 'Houston', '2024-11-20'),
-    (3, 'Meals for All', 'Clothes', 'Collecting warm clothes for winter', 'New York', 'Brooklyn', '2024-11-30');
+    (1, 'Hope for Kids', 'Food', 'Need food supplies for underprivileged children', 'California', 'Los Angeles', '2025-02-10', 1000),
+    (2, 'Healing Hands', 'Money', 'Fundraising for medical aid', 'Texas', 'Houston', '2025-03-20', 200),
+    (3, 'Meals for All', 'Clothes', 'Collecting warm clothes for winter', 'New York', 'Brooklyn', '2025-02-20', 300);
 
 INSERT INTO Donation (donor_id, request_id, items_donated, quantity, pickup_location, drop_location)
 VALUES 

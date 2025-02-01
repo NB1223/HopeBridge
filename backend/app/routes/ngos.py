@@ -1,10 +1,9 @@
 import hashlib
 
-from app.models import NGO, db
+from app.models import NGO, Request, db
 from flask import Blueprint, jsonify, request
 
 ngo_bp = Blueprint("ngo", __name__)
-# login_bp = Blueprint('ngologin', __name__)
 
 # Hash password manually using hashlib
 def hash_password(password):
@@ -72,4 +71,27 @@ def login_ngo():
         return jsonify({"message": "Invalid password"}), 401
 
     return jsonify({"message": "NGO logged in successfully"}), 200
+
+
+@ngo_bp.route('/requests', methods=['GET'])
+def get_requests():
+    requests = Request.query.all()  # Get all requests from the Request table
+    if not requests:
+        return jsonify([])  # Ensure response is always an array
+    
+    request_list = [
+        {
+            "request_id": request.request_id,
+            "ngo_id": request.ngo_id,
+            "ngo_name": request.ngo_name,
+            "request_type": request.request_type,
+            "request_description": request.request_description,
+            "ngo_state": request.ngo_state,
+            "ngo_district": request.ngo_district,
+            "donation_deadline": request.donation_deadline.strftime("%Y-%m-%d"),  # Format date
+            "quantity": request.quantity  # Include the quantity field
+        }
+        for request in requests
+    ]
+    return jsonify(request_list)
 

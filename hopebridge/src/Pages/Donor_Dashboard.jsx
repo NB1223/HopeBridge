@@ -1,60 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Donor_Dash.css';
-
-// Sample data for donation requests
-const donationRequests = [
-  {
-    id: 1,
-    ngoName: 'Hope for All',
-    requestedAmount: 500,
-    category: 'Food',
-    description: 'Help feed 1000 families in need this winter.',
-    urgency: 'high',
-  },
-  {
-    id: 2,
-    ngoName: 'Water is Life',
-    requestedAmount: 300,
-    category: 'Water Supply',
-    description: 'Donate to build wells in rural areas.',
-    urgency: 'medium',
-  },
-  {
-    id: 3,
-    ngoName: 'Green Earth',
-    requestedAmount: 1000,
-    category: 'Environment',
-    description: 'Help plant trees and restore forests.',
-    urgency: 'low',
-  },
-  {
-    id: 4,
-    ngoName: 'Children of Tomorrow',
-    requestedAmount: 700,
-    category: 'Education',
-    description: 'Provide books and supplies for underprivileged children.',
-    urgency: 'high',
-  },
-];
 
 const DonorDashboard = () => {
   const [requests, setRequests] = useState([]);
 
+  // Fetch donation requests from the backend API
   useEffect(() => {
-    setRequests(donationRequests);
+    const fetchDonationRequests = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/ngo/requests');
+        const data = await response.json();
+        setRequests(data);
+      } catch (error) {
+        console.error("Error fetching donation requests:", error);
+      }
+    };
+
+    fetchDonationRequests();
   }, []);
+
+  // Function to return the correct unit based on request type
+  const getQuantityUnit = (requestType) => {
+    switch (requestType) {
+      case 'Money':
+        return 'Rupees';
+      case 'Food':
+      case 'Clothes':
+      case 'Sanitary/Toiletries':
+        return 'People';
+      default:
+        return '';
+    }
+  };
+
+  // Function to calculate urgency based on donation deadline
+  const getUrgencyLevel = (donationDeadline) => {
+    const currentDate = new Date();
+    const deadlineDate = new Date(donationDeadline);
+    const timeDiff = deadlineDate - currentDate;
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Convert milliseconds to days
+
+    if (daysRemaining < 10) {
+      return 'High';
+    } else if (daysRemaining >= 10 && daysRemaining <= 30) {
+      return 'Medium';
+    } else {
+      return 'Low';
+    }
+  };
 
   return (
     <div className="donor-dashboard">
-      <h1 className='req-to-donor'>Donation Requests</h1>
+      <h1 className="req-to-donor">Donation Requests</h1>
       <div className="card-container">
         {requests.map((request) => (
-          <div className="donation-card" key={request.id}>
-            <h3 className="ngo-name">{request.ngoName}</h3>
-            <p className="category">Category: {request.category}</p>
-            <p className="amount">Requested Amount: ${request.requestedAmount}</p>
-            <p className="description">{request.description}</p>
-            <p className={`urgency ${request.urgency}`}>Urgency: {request.urgency}</p>
+          <div className="donation-card" key={request.request_id}>
+            <h3 className="ngo-name">{request.ngo_name}</h3>
+            <p className="category">Category: {request.request_type}</p>
+            <p className="amount">
+              Requested Amount: {request.quantity} {getQuantityUnit(request.request_type)}
+            </p>
+            <p className="description">{request.request_description}</p>
+            <p className={`urgency ${getUrgencyLevel(request.donation_deadline)}`}>
+              Urgency: {getUrgencyLevel(request.donation_deadline)}
+            </p>
             <button className="donate-button">Donate Now</button>
           </div>
         ))}
