@@ -1,4 +1,10 @@
+import os
+
+
 class Config:
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://user:password@localhost/HopeBridge"
+    # Set up the main database URI with mysql+mysqlconnector to ensure compatibility
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        'DATABASE_URL', 
+        'mysql+mysqlconnector://root:Jeevana%4005@localhost/HopeBridge'
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    CORS_HEADERS = "Content-Type"
