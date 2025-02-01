@@ -10,6 +10,9 @@ import NGOsPage from './Pages/Ngo_Intro.jsx';
 import Register_NGO from './Pages/NGO_Register.jsx';
 import NGO_Dash from './Pages/NGO_Dash.jsx';
 import LandingPage from './Pages/LandingPage.jsx';
+import AddReq from "./Pages/AddReq.jsx";     // The AddReq page
+import TrackReq from "./Pages/TrackReq.jsx"; // The TrackReq page
+
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
           <Route path="/Register_NGO" element={<Register_NGO />} />
           <Route path="/Register_Donor" element={<Register_Donor />} />
           
+          <Route path="/ngo-dashboard" element={<NGO_Dash />} />
+          <Route path="/add-request" element={<AddReq />} />
+         <Route path="/track-requests" element={<TrackReq />} />
         </Routes>
       </Router>
     </div>

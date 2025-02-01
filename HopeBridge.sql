@@ -53,8 +53,6 @@ CREATE TABLE IF NOT EXISTS Donation (
     FOREIGN KEY (request_id) REFERENCES Request(request_id) ON DELETE CASCADE
 );
 
-ALTER TABLE Request
-ADD COLUMN requested_quantity INT NOT NULL;
 
 DELIMITER //
 CREATE PROCEDURE InsertDonation(
