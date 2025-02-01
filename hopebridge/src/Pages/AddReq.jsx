@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AddReq.css';
+import NavNgo from '../Components/NavNgo';
 
 const AddReq = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ const AddReq = () => {
 
   return (
     <div className="add-request">
+      <NavNgo/>
       <h2>Add Donation Request</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="ngo_name" placeholder="NGO Name" onChange={handleChange} required />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Donor_Form.css'
+import NavBarComponent from '../Components/NavBar';
 
 const DonationForm = () => {
   // State management
@@ -52,6 +53,7 @@ const DonationForm = () => {
   return (
     <div className="donation-form">
       <div className='donation-container'>
+        <NavBarComponent/>
         <h1>Donation Form</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

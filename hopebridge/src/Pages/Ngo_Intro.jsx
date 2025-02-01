@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './Ngo_Intro.css'; // Ensure CSS file exists
+import NavbarComponent from '../Components/NavBar'; // Donor Navbar
+import NavNgo from '../Components/NavNgo'; // NGO Navbar
 
-const AboutNGOsPage = () => {
+const NGOsPage = () => {
     const [ngos, setNgos] = useState([]); 
     const [loading, setLoading] = useState(true);
+    const [loginType, setLoginType] = useState(null); // State to store loginType
 
     useEffect(() => {
+        // Retrieve loginType from localStorage
+        const storedLoginType = localStorage.getItem("login_type");
+        setLoginType(storedLoginType); // Set the login type from localStorage
+
+        // Fetch NGOs
         async function fetchNgos() {
             try {
                 const response = await fetch('http://127.0.0.1:5000/ngo/list'); 
@@ -26,6 +34,9 @@ const AboutNGOsPage = () => {
 
     return (
         <div className="about-ngos-page">
+            {/* Conditionally render Navbar based on loginType */}
+            {loginType === "ngo" ? <NavNgo /> : <NavbarComponent />}
+            
             <h1>About the NGOs</h1>
 
             <section className="ngo-section">
@@ -72,4 +83,4 @@ const AboutNGOsPage = () => {
     );
 };
 
-export default AboutNGOsPage;
+export default NGOsPage;

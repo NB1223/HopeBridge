@@ -20,7 +20,7 @@ export default function LoginPage() {
     try {
       let url = "";
       let bodyData = {};
-
+      
       if (loginType === "ngo") {
         url = "http://127.0.0.1:5000/ngo/login";
         bodyData = { unique_id: formData.unique_id, password: formData.password };
@@ -37,6 +37,7 @@ export default function LoginPage() {
 
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("login_type", loginType); // Store login type in localStorage
         if (loginType === "ngo") {
           localStorage.setItem("ngo_unique_id", formData.unique_id); // Store NGO unique_id
           navigate("/ngo-dashboard"); // Redirect to NGO Dashboard

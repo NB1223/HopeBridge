@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './About_Us.css'; // Create a corresponding CSS file for styling
+import NavbarComponent from '../Components/NavBar'; // Donor Navbar
+import NavNgo from '../Components/NavNgo'; // NGO Navbar
 
 const AboutUsPage = () => {
+  const [loginType, setLoginType] = useState(null);
+
+  useEffect(() => {
+    // Retrieve loginType from localStorage
+    const storedLoginType = localStorage.getItem("login_type");
+    setLoginType(storedLoginType); // Set the login type from localStorage
+  }, []);
+
   return (
     <div className="about-us-page">
+      {/* Conditionally render Navbar based on loginType */}
+      {loginType === "ngo" ? <NavNgo /> : <NavbarComponent />}
+
       <h1>About Us</h1>
 
       <section className="mission-section">

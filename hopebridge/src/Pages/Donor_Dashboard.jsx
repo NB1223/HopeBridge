@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Donor_Dash.css';
+import NavBarComponent from '../Components/NavBar.jsx'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -54,6 +55,7 @@ const DonorDashboard = () => {
 
   return (
     <div className="donor-dashboard">
+      <NavBarComponent/>
       <h1 className="req-to-donor">Donation Requests</h1>
       <div className="card-container">
         {requests.map((request) => (
