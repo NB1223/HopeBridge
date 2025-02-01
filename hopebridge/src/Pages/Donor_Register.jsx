@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Donor_Register.css";
 import Register_BG from "../assets/Register_BG.jpg";
+import "./Donor_Register.css";
 
 export default function Register_Donor() {
   const navigate = useNavigate();
@@ -13,23 +13,48 @@ export default function Register_Donor() {
   const [password, setPassword] = useState("");
 
   const statesWithDistricts = {
-    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Kurnool"],
-    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
-    "Karnataka": ["Bangalore", "Mysore", "Hubli", "Mangalore"],
+    "California": ["Los Angeles", "San Francisco", "San Diego", "Sacramento"],
+    "Texas": ["Houston", "Dallas", "Austin", "San Antonio"],
+    "New York": ["New York City", "Buffalo", "Rochester", "Albany"],
+    "Florida": ["Miami", "Orlando", "Tampa", "Jacksonville"],
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log("Registration Data:", {
-      name,
-      phone,
-      email,
-      state,
-      district,
-      password,
-    });
+const handleRegister = async (e) => {
+  e.preventDefault();
+
+  const donorData = {
+    name,
+    phone,
+    email,
+    state,
+    district,
+    password,
   };
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/donor/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(donorData),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      // Successfully registered
+      console.log("Registration successful:", result);
+      navigate("/login");  // Navigate to the login page after successful registration
+    } else {
+      // Handle errors (e.g., user already exists)
+      console.log("Registration error:", result.message);
+    }
+  } catch (error) {
+    console.error("Error during registration:", error);
+  }
+};
+
 
   return (
     <div className="container-register">

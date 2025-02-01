@@ -9,32 +9,42 @@ ngo_bp = Blueprint("ngo", __name__)
 def hash_password(password):
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
 
-# Check password manually using hashlib (matching hashed passwords)
+# Check password manually using hashlib
 def check_password(stored_hash, password):
     return stored_hash == hashlib.sha256(password.encode('utf-8')).hexdigest()
 
 @ngo_bp.route("/register", methods=["POST"])
 def register_ngo():
     data = request.get_json()
+    state = data["state"]
+    district = data["district"]
+    sector = data["sector"]
+    ngo_type = data["ngo_type"]  
+    ngo_name = data["ngo_name"] 
+    unique_id = data["unique_id"]  
+    password = data["password"]
 
     # Check if NGO with the same unique_id already exists
-    if NGO.query.filter_by(unique_id=data["unique_id"]).first():
+    if NGO.query.filter_by(unique_id=unique_id).first():
         return jsonify({"message": "NGO with this unique ID already exists"}), 400
 
-    hashed_password = hash_password(data["password"])  # Hash password using hashlib
+    hashed_password = hash_password(password)  # Hash password
     new_ngo = NGO(
-        state=data["state"],
-        district=data["district"],
-        sector=data["sector"],
-        ngo_type=data["ngo_type"],
-        ngo_name=data["ngo_name"],
-        unique_id=data["unique_id"],
+        state=state,
+        district=district,
+        sector=sector,
+        ngo_type=ngo_type,
+        ngo_name=ngo_name,
+        unique_id=unique_id,
         password=hashed_password  # Store hashed password
     )
+
     db.session.add(new_ngo)
     db.session.commit()
     return jsonify({"message": "NGO registered successfully"}), 201
 
+
+# Get all NGOs
 @ngo_bp.route('/list', methods=['GET'])
 def get_ngos():
     ngos = NGO.query.all()
@@ -55,7 +65,7 @@ def get_ngos():
     ]
     return jsonify(ngo_list)
 
-# NGO login route using hashlib for password verification
+# NGO Login
 @ngo_bp.route('/login', methods=['POST'])
 def login_ngo():
     data = request.get_json()
@@ -67,15 +77,39 @@ def login_ngo():
         return jsonify({"message": "NGO not found"}), 404
 
     # Compare the hashed passwords
-    if ngo.password != hashlib.sha256(password.encode('utf-8')).hexdigest():
+    if not check_password(ngo.password, password):
         return jsonify({"message": "Invalid password"}), 401
 
     return jsonify({"message": "NGO logged in successfully"}), 200
 
+# Add a Donation Request (New Route)
+@ngo_bp.route('/add-requests', methods=['POST'])
+def add_request():
+    data = request.get_json()
 
+    # Verify if the NGO exists
+    ngo = NGO.query.filter_by(ngo_name=data.get('ngo_name')).first()
+    if not ngo:
+        return jsonify({"message": "NGO not found"}), 404
+
+    new_request = Request(
+        ngo_id=ngo.ngo_id,
+        ngo_name=data['ngo_name'],
+        request_type=data['request_type'],
+        request_description=data['request_description'],
+        quantity=data['quantity'],
+        donation_deadline=data['donation_deadline']
+    )
+
+    db.session.add(new_request)
+    db.session.commit()
+
+    return jsonify({"message": "Request added successfully"}), 201
+
+# Get all donation requests
 @ngo_bp.route('/requests', methods=['GET'])
 def get_requests():
-    requests = Request.query.all()  # Get all requests from the Request table
+    requests = Request.query.all()
     if not requests:
         return jsonify([])  # Ensure response is always an array
     
@@ -86,12 +120,22 @@ def get_requests():
             "ngo_name": request.ngo_name,
             "request_type": request.request_type,
             "request_description": request.request_description,
-            "ngo_state": request.ngo_state,
-            "ngo_district": request.ngo_district,
-            "donation_deadline": request.donation_deadline.strftime("%Y-%m-%d"),  # Format date
-            "quantity": request.quantity  # Include the quantity field
+            "donation_deadline": request.donation_deadline.strftime("%Y-%m-%d"),
+            "quantity": request.quantity
         }
         for request in requests
     ]
     return jsonify(request_list)
 
+# Get all requests for a specific NGO
+@ngo_bp.route('/<unique_id>/requests', methods=['GET'])
+def get_requests_for_ngo(unique_id):
+    ngo = NGO.query.filter_by(unique_id=unique_id).first()
+    
+    if not ngo:
+        return jsonify({"message": "NGO not found"}), 404
+
+    requests = Request.query.filter_by(ngo_id=ngo.ngo_id).all()
+    request_list = [request.to_dict() for request in requests]
+    
+    return jsonify(request_list)

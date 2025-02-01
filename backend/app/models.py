@@ -34,15 +34,16 @@ class Admin(db.Model):
     password = db.Column(db.String(255), nullable=False)
 
 class NGO(db.Model):
-    __tablename__ = "NGO"
+    __tablename__ = 'NGO'
 
-    ngo_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    state = db.Column(db.String(100), nullable=False)
-    district = db.Column(db.String(100), nullable=False)
+    ngo_id = db.Column(db.String(255), nullable=False)
+    state = db.Column(db.String(255), nullable=False)
+    district = db.Column(db.String(255), nullable=False)
     sector = db.Column(db.String(255), nullable=False)
-    ngo_type = db.Column(db.String(100), nullable=False)
+    ngo_type = db.Column(db.String(255), nullable=False)
     ngo_name = db.Column(db.String(255), nullable=False)
-    unique_id = db.Column(db.String(50), unique=True, nullable=False)
+    unique_id = db.Column(db.String(255), primary_key=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

@@ -1,29 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import "./NGO_Dash.css"; // Assuming you will create a separate CSS file for styling
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './NGO_Dash.css';
 
-export default function NGO_Dash() {
+const NGODashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="ngo-dash-container">
-      <h1 className="dashboard-title">NGO Dashboard</h1>
+    <div className="ngo-dashboard">
+      <h1>NGO Dashboard</h1>
       <div className="button-container">
-        {/* Button for adding a request */}
-        <button
-          className="dashboard-btn"
-          onClick={() => navigate("/add-request")} // Adjust the route to your needs
-        >
-          Add a Request
-        </button>
-
-        {/* Button for tracking requests */}
-        <button
-          className="dashboard-btn"
-          onClick={() => navigate("/track-requests")} // Adjust the route to your needs
-        >
-          Track Your Requests
-        </button>
+        <button onClick={() => navigate('/NGO_AddRequest')}>Add Request</button>
+        <button onClick={() => navigate('/NGO_TrackRequest')}>Track Requests</button>
       </div>
     </div>
   );
-}
+};
+
+export default NGODashboard;

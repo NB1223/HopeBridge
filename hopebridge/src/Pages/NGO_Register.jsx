@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./NGO_Register.css";
 import Register_BG from "../assets/Register_BG.jpg";
+import "./NGO_Register.css";
 
 export default function Register_NGO() {
   const navigate = useNavigate();
@@ -14,10 +14,10 @@ export default function Register_NGO() {
   const [password, setPassword] = useState("");
 
   const statesWithDistricts = {
-    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Kurnool"],
-    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
-    "Karnataka": ["Bangalore", "Mysore", "Hubli", "Mangalore"],
+    "California": ["Los Angeles", "San Francisco", "San Diego", "Sacramento"],
+    "Texas": ["Houston", "Dallas", "Austin", "San Antonio"],
+    "New York": ["New York City", "Buffalo", "Rochester", "Albany"],
+    "Florida": ["Miami", "Orlando", "Tampa", "Jacksonville"],
   };
 
   const sectors = ["Public", "Private"];
@@ -31,17 +31,41 @@ export default function Register_NGO() {
     "Other",
   ];
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Registration Data:", {
+
+    const ngoData = {
       state,
       district,
       sector,
-      ngoType,
-      ngoName,
-      uniqueId,
-      password
-    });
+      ngo_type: ngoType,  
+      ngo_name: ngoName,  
+      unique_id: uniqueId,  
+      password,
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/ngo/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ngoData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Successfully registered
+        console.log("Registration successful:", result);
+        navigate("/login");  // Navigate to the login page after successful registration
+      } else {
+        // Handle errors (e.g., user already exists)
+        console.log("Registration error:", result.message);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -115,18 +139,20 @@ export default function Register_NGO() {
             required
           />
 
+          {/* Password Input */}
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setUniqueId(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
+
+          {/* Buttons */}
           <div className="btn-container">
             <button type="submit">Register</button>
             <button className="back-btn" onClick={() => navigate("/")}>Go Back</button>
           </div>
-          
         </form>
       </div>
     </div>

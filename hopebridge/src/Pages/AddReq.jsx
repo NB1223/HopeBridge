@@ -1,86 +1,55 @@
 import React, { useState } from 'react';
 import './AddReq.css';
 
-
 const AddReq = () => {
-  // State management for the request form
-  const [requestType, setRequestType] = useState('');
-  const [requestDescription, setRequestDescription] = useState('');
-  const [donationDeadline, setDonationDeadline] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [formData, setFormData] = useState({
+    ngo_name: '',
+    request_type: '',
+    request_description: '',
+    quantity: '',
+    donation_deadline: ''
+  });
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const requestData = {
-      requestType,
-      requestDescription,
-      donationDeadline,
-      quantity
-    };
-    console.log(requestData); // Handle the submission logic (e.g., sending to the backend)
-    alert('Request details submitted successfully!');
+    
+    try {
+      const response = await fetch('http://127.0.0.1:5000/ngo/add-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Request added successfully');
+      } else {
+        alert('Failed to add request');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
-    <div className="add-request-form">
-      <h1>Add a Request</h1>
+    <div className="add-request">
+      <h2>Add Donation Request</h2>
       <form onSubmit={handleSubmit}>
-        {/* Request Type */}
-        <div className="form-group">
-          <label htmlFor="requestType">Request Type:</label>
-          <select
-            id="requestType"
-            value={requestType}
-            onChange={(e) => setRequestType(e.target.value)}
-            required
-          >
-            <option value="">Select a request type</option>
-            <option value="Food">Food</option>
-            <option value="Money">Money</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Sanitary/Toiletries">Sanitary/Toiletries</option>
-          </select>
-        </div>
-
-        {/* Request Description */}
-        <div className="form-group">
-          <label htmlFor="requestDescription">Request Description:</label>
-          <textarea
-            id="requestDescription"
-            value={requestDescription}
-            onChange={(e) => setRequestDescription(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* Donation Deadline */}
-        <div className="form-group">
-          <label htmlFor="donationDeadline">Donation Deadline:</label>
-          <input
-            type="date"
-            id="donationDeadline"
-            value={donationDeadline}
-            onChange={(e) => setDonationDeadline(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* Quantity */}
-        <div className="form-group">
-          <label htmlFor="quantity">Quantity:</label>
-          <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            min="1"
-            required
-          />
-        </div>
-
-        {/* Submit Button */}
-        <button type="submit">Submit Request</button>
+        <input type="text" name="ngo_name" placeholder="NGO Name" onChange={handleChange} required />
+        <select name="request_type" onChange={handleChange} required>
+          <option value="">Select Category</option>
+          <option value="Food">Food</option>
+          <option value="Money">Money</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Sanitary/Toiletries">Sanitary/Toiletries</option>
+        </select>
+        <textarea name="request_description" placeholder="Description" onChange={handleChange} required />
+        <input type="number" name="quantity" placeholder="Quantity" onChange={handleChange} required />
+        <input type="date" name="donation_deadline" onChange={handleChange} required />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

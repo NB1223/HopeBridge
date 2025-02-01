@@ -1,8 +1,7 @@
 INSERT INTO Donor (name, phone_number, email, state, district, password)
 VALUES 
     ('John Doe', '9876543210', 'john.doe@example.com', 'California', 'Los Angeles', 'hashed_password_1'),
-    ('Alice Smith', '8765432109', 'alice.smith@example.com', 'Texas', 'Dallas', 'hashed_password_2'),
-    ('Bob Johnson', '7654321098', 'bob.johnson@example.com', 'Florida', 'Miami', 'hashed_password_3');
+    ('Alice Smith', '8765432109', 'alice.smith@example.com', 'Texas', 'Dallas', 'hashed_password_2');
 
 INSERT INTO Admin (name, password)
 VALUES 
@@ -11,9 +10,8 @@ VALUES
 
 INSERT INTO NGO (state, district, sector, ngo_type, ngo_name, unique_id, password)
 VALUES 
-    ('California', 'Los Angeles', 'Education', 'Non-Profit', 'Hope for Kids', 'NGO12345', 'dummyhashedpassword'),
-    ('Texas', 'Houston', 'Healthcare', 'Charitable Trust', 'Healing Hands', 'NGO67890', 'dummyhashedpassword'),
-    ('New York', 'Brooklyn', 'Food Supply', 'Foundation', 'Meals for All', 'NGO11223', 'dummyhashedpassword');
+    ('California', 'Los Angeles', 'Public', 'Private Sector Companies (Sec 8/25)', 'Hope for Kids', 'NGO12345', 'dummyhashedpassword'),
+    ('Texas', 'Houston', 'Public', 'Private Sector Companies (Sec 8/25)', 'Healing Hands', 'NGO67890', 'dummyhashedpassword');
 
 INSERT INTO Request (ngo_id, ngo_name, request_type, request_description, ngo_state, ngo_district, donation_deadline, quantity)
 VALUES 

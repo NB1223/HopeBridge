@@ -24,7 +24,7 @@ def register_donor():
     hashed_password = hash_password(data["password"])  # Hash password using hashlib
     new_donor = Donor(
         name=data["name"],
-        phone_number=data["phone_number"],
+        phone_number=data["phone"],
         email=data["email"],
         state=data["state"],
         district=data["district"],
