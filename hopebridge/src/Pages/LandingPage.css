@@ -1,0 +1,109 @@
+/* src/Pages/LandingPage.css */
+
+/* Full-screen transparent background */
+.landing-page {
+    text-align: center;
+    padding: 50px;
+    background-color: transparent; /* Remove green background */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden; /* Prevents any unwanted overflow */
+  }
+  
+  /* Style for the heading (h1) */
+  .landing-page h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Add shadow to text for contrast */
+  }
+  
+  /* Style for the subheading (h3) */
+  .landing-page h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff; /* White color */
+    margin-bottom: 40px; /* Add some space below */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow for contrast */
+    letter-spacing: 1px; /* Slight letter spacing for better readability */
+    opacity: 0.9; /* Slight transparency to make it blend with the background */
+    font-family: 'Arial', sans-serif; /* Use a clean font for subheading */
+  }
+  
+  /* Glass box with transparent background */
+  .glass-box {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    backdrop-filter: blur(8px); /* Apply blur effect to the background */
+    -webkit-backdrop-filter: blur(8px); /* Safari support for blur */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%; /* Width of the glass box */
+    max-width: 600px; /* Max width for the box */
+    margin: auto; /* Center the box in the middle */
+  }
+  
+  /* Flex container for buttons */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Style for the individual buttons */
+  .landing-button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+  }
+  
+  /* Hover effect for buttons */
+  .landing-button:hover {
+    background-color: #45a049;
+    transform: translateY(-5px);
+  }
+  
+  /* Button focus state */
+  .landing-button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(72, 163, 72, 0.5);
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .landing-page h1 {
+      font-size: 32px;
+    }
+  
+    .landing-page h3 {
+      font-size: 20px;
+    }
+  
+    .button-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .landing-button {
+      width: 100%;
+      padding: 12px;
+    }
+  }
+  

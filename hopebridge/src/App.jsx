@@ -9,19 +9,21 @@ import LoginPage from './Pages/Login.jsx';
 import NGOsPage from './Pages/Ngo_Intro.jsx';
 import Register_NGO from './Pages/NGO_Register.jsx';
 import NGO_Dash from './Pages/NGO_Dash.jsx';
+import LandingPage from './Pages/LandingPage.jsx';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <NGO_Dash/>
+        {/* <NGO_Dash/> */}
         {/* <NavbarComponent /> */}
         {/* <AboutUsPage/> */}
         {/* <Register_Donor/> */}
         {/* <LoginPage/> */}
         <Routes>
           {/* parallax path */}
-          <Route path="/" />
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/" /> */}
           <Route path="/Donor_Dashboard" element={<Donor_Dash />} />
           <Route path="/Partnered_NGOs" element={<NGOsPage/>} />
           <Route path="/About_Us" element={<AboutUsPage/>} />
@@ -29,6 +31,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/Register_NGO" element={<Register_NGO />} />
           <Route path="/Register_Donor" element={<Register_Donor />} />
+          
         </Routes>
       </Router>
     </div>
