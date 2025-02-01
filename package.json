@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "npm": "^11.1.0"
+  },
+  "devDependencies": {
+    "web-vitals": "^4.2.4"
+  }
+}
