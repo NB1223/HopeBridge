@@ -1,0 +1,89 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #ffffff; /* Light grey background */
+  height: 60px; /* Adjust height for better spacing */
+  width: 100vw; /* Full viewport width */
+  position: fixed; /* Position fixed at the top */
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #858585; /* Subtle bottom border for separation */
+  display: flex;
+  align-items: center; /* Vertically center items */
+  justify-content: space-between; /* Space between brand and navigation links */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0 20px; /* Add padding for spacing on the sides */
+  z-index: 1000; /* Ensure navbar is above other content */
+}
+
+/* Container for centering navbar content */
+.container {
+  display: flex;
+  align-items: center; /* Vertically center navbar content */
+  justify-content: space-between; /* Spread out brand and nav items */
+  width: 100%;
+  max-width: 1200px; /* Limit max width on large screens */
+  margin: 0 auto; /* Center container horizontally */
+}
+
+/* Brand (HopeBridge) styling */
+.navbar-brand {
+  font-size: 1.8rem; /* Larger font size for the brand */
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  padding-left: 0; /* Remove left padding */
+}
+
+/* Brand logo image styling */
+.navbar-brand {
+  /* width: 60px;
+  height: auto; */
+  margin-right: 1rem; /* Space between the logo and brand text */
+  color: green;
+}
+
+.navbar-brand:hover{
+  color: rgb(2, 68, 9);
+}
+
+/* Navigation links styling */
+.nav {
+  display: flex;
+}
+
+.nav-link {
+  color: #6c757d; /* Medium grey for links */
+  font-size: 1rem; /* Adjust font size */
+  font-weight: 500;
+  margin-right: 1.5rem; /* Space between links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-family: Raleway, sans-serif;
+}
+
+.nav-link:hover {
+  color: rgb(3, 204, 23); /* Darker color on hover */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: black;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar content vertically on small screens */
+    height: auto;
+    padding: 1rem;
+  }
+
+  .nav {
+    flex-direction: column; /* Stack nav links vertically */
+    margin-top: 1rem;
+  }
+
+  .nav-link {
+    margin: 0.5rem 0; /* Adjust spacing between links on small screens */
+  }
+}
