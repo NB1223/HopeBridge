@@ -86,29 +86,58 @@ def login_ngo():
 @ngo_bp.route('/add-requests', methods=['POST'])
 def add_request():
     data = request.get_json()
-
-    # Verify if the NGO exists
+    
+    # Verify if NGO exists
     ngo = NGO.query.filter_by(ngo_name=data.get('ngo_name')).first()
     if not ngo:
         return jsonify({"message": "NGO not found"}), 404
+
+    # Ensure ngo_state and ngo_district have default values if missing
+    ngo_state = data.get('ngo_state', 'Unknown')
+    ngo_district = data.get('ngo_district', 'Unknown')
 
     new_request = Request(
         ngo_id=ngo.ngo_id,
         ngo_name=data['ngo_name'],
         request_type=data['request_type'],
         request_description=data['request_description'],
-        quantity=data['quantity'],
-        donation_deadline=data['donation_deadline']
+        ngo_state=ngo_state,
+        ngo_district=ngo_district,
+        donation_deadline=data['donation_deadline'],
+        quantity=data['quantity']
     )
 
-    db.session.add(new_request)
-    db.session.commit()
+    try:
+        db.session.add(new_request)
+        db.session.commit()
+        return jsonify({"message": "Request added successfully"}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": str(e)}), 500
 
-    return jsonify({"message": "Request added successfully"}), 201
+@ngo_bp.route('/list-requests', methods=['GET'])
+def get_requests():
+    requests = Request.query.all()
+    if not requests:
+        return jsonify([])  # Ensure response is always an array
+    
+    request_list = [
+        {
+            "request_id": request.request_id,
+            "ngo_id": request.ngo_id,
+            "ngo_name": request.ngo_name,
+            "request_type": request.request_type,
+            "request_description": request.request_description,
+            "donation_deadline": request.donation_deadline.strftime("%Y-%m-%d"),
+            "quantity": request.quantity
+        }
+        for request in requests
+    ]
+    return jsonify(request_list)
 
 # Get all donation requests for a specific NGO
 @ngo_bp.route('/requests/<string:unique_id>', methods=['GET'])
-def get_requests(unique_id):
+def get_requests_by_unique_id(unique_id):
     # Fetch NGO using unique_id
     ngo = NGO.query.filter_by(unique_id=unique_id).first()
 
@@ -143,5 +172,4 @@ def get_requests(unique_id):
     ]
     
     return jsonify(request_list), 200
-
 

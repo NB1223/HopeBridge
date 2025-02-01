@@ -17,23 +17,31 @@ const AddReq = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    console.log("Sending Data:", formData); // Debugging
+
     try {
-      const response = await fetch('http://127.0.0.1:5000/ngo/add-request', {
+      const response = await fetch('http://127.0.0.1:5000/ngo/add-requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
+
+      // Log response status and body for debugging
+      const responseData = await response.json();
+      console.log("Response Data:", responseData); // Debugging
 
       if (response.ok) {
         alert('Request added successfully');
       } else {
-        alert('Failed to add request');
+        alert(`Failed to add request: ${responseData.message || "Unknown error"}`);
       }
     } catch (error) {
       console.error('Error:', error);
+      alert("An error occurred while submitting the request");
     }
   };
+
 
   return (
     <div className="add-request">
@@ -41,6 +49,9 @@ const AddReq = () => {
       <h2>Add Donation Request</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="ngo_name" placeholder="NGO Name" onChange={handleChange} required />
+        <input type="text" name="ngo_state" placeholder="State" onChange={handleChange} required />
+        <input type="text" name="ngo_district" placeholder="District" onChange={handleChange} required />
+
         <select name="request_type" onChange={handleChange} required>
           <option value="">Select Category</option>
           <option value="Food">Food</option>

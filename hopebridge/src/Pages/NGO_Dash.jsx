@@ -11,8 +11,8 @@ const NGODashboard = () => {
       <NavNgo/>
       <h1>NGO Dashboard</h1>
       <div className="button-container">
-        <button onClick={() => navigate('/NGO_AddRequest')}>Add Request</button>
-        <button onClick={() => navigate('/NGO_TrackRequest')}>Track Requests</button>
+        <button onClick={() => navigate('/add-request')}>Add Request</button>
+        <button onClick={() => navigate('/track-requests')}>Track Requests</button>
       </div>
     </div>
   );

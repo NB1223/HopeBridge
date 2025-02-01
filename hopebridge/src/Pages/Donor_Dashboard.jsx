@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './Donor_Dash.css';
-import NavBarComponent from '../Components/NavBar.jsx'
 import { useNavigate } from 'react-router-dom';
+import NavBarComponent from '../Components/NavBar.jsx';
+import './Donor_Dash.css';
 
 
 const DonorDashboard = () => {
@@ -12,8 +12,9 @@ const DonorDashboard = () => {
   useEffect(() => {
     const fetchDonationRequests = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/ngo/requests');
+        const response = await fetch('http://127.0.0.1:5000/ngo/list-requests');
         const data = await response.json();
+        console.log(data);
         setRequests(data);
       } catch (error) {
         console.error("Error fetching donation requests:", error);

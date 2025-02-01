@@ -1,55 +1,81 @@
-.add-request-form {
-    width: 100%; /* Takes up 90% of the screen width */
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
+.add-request {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.add-request-form h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+.add-request h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    width: 100%; /* Ensures full width within the form */
+.add-request form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+.add-request input,
+.add-request select,
+.add-request textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out;
 }
 
-.form-group select,
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+.add-request input:focus,
+.add-request select:focus,
+.add-request textarea:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
-/* Full-width button */
-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #14770d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.add-request textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-button:hover {
-    background-color: #026901;
+.add-request button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.add-request button:hover {
+  background: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .add-request {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .add-request h2 {
+    font-size: 20px;
+  }
+
+  .add-request input,
+  .add-request select,
+  .add-request textarea {
+    font-size: 14px;
+  }
+
+  .add-request button {
+    font-size: 14px;
+  }
 }

@@ -45,7 +45,7 @@ const TrackReq = () => {
             </div>
           ))
         ) : (
-          <p>No requests found for your NGO.</p>  // Display a message when no requests are found
+          <p className="error">No requests found for your NGO.</p>  // Display a message when no requests are found
         )}
       </div>
     </div>
