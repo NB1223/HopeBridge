@@ -1,11 +1,12 @@
 /* Apply full-page background image */
 .landing-page {
-    height: 100vh;
+    height: 90vh;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('C:\Users\Admin\Documents\GREESHMA\gronit\21_4_Brain_Cells\hopebridge\src\assets\Register_BG.jpg') no-repeat center center/cover;
+    background: url('C:\Users\admin\Desktop\21_4_Brain_Cells\hopebridge\src\assets\Register_BG.jpg') no-repeat center center/cover;
     text-align: center;
   }
   
@@ -15,6 +16,8 @@
     color: white;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
+    font-family: Raleway;
+    font-weight: bold;
   }
   
   .landing-page h3 {
@@ -22,6 +25,8 @@
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     margin-bottom: 30px;
+    font-family: Raleway;
+    font-weight: normal;
   }
   
   /* Glass effect container */

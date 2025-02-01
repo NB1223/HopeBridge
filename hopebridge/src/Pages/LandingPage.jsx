@@ -6,7 +6,7 @@ import './LandingPage.css';  // Import the specific CSS for LandingPage
 function LandingPage() {
   return (
     <div className="landing-page">
-      <h1>Hope Bridge</h1>
+      <h1>HopeBridge</h1>
       <h3>Bridging the gap between Generosity and Need</h3>
       
       {/* Glass box with transparent background */}
