@@ -1,0 +1,77 @@
+/* Main container for notifications */
+.notification-container {
+    padding: 1rem;
+  }
+  
+  /* Title styling */
+  .notification-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fc0505;
+  }
+  
+  /* Grid layout for the cards */
+  .notification-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .notification-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .notification-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Styling for each card */
+  .notification-card {
+    background-color: #ebebeb; /* Light red */
+    border-left: 4px solid #e90f0f; /* Red border */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: rgb(102, 5, 5);
+  }
+
+  .nav-link-notif {
+    padding: 10px;
+    color: green;
+  }
+
+  .nav-link-notif:hover{
+    text-decoration-line: underline;
+    color: gray;
+  }
+  
+  /* Title inside each card */
+  .notification-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Text styling for region and date */
+  .notification-region, .notification-date {
+    font-size: 0.875rem;
+    color: #820505; /* Gray text */
+  }
+  
+  /* Link styling */
+  .notification-link {
+    color: #ef0202; /* Blue text */
+    text-decoration: none;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  .notification-link:hover {
+    text-decoration: underline;
+  }
+  
