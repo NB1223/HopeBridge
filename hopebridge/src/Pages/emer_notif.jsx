@@ -1,8 +1,8 @@
 import React from 'react';
-import emergencyNews from 'C:/Users/admin/Desktop/21_4_Brain_Cells/backend/app/routes/relevant_emergency_news.json';
-import './emer_notif.css';
-import NavNgo from '../Components/NavNgo.jsx'
 import { Link } from 'react-router-dom';
+import NavNgo from '../Components/NavNgo.jsx';
+import './emer_notif.css';
+import emergencyNews from 'C:/Users/JEEVANA/OneDrive/Desktop/Jeevana/21_4_Brain_Cells/backend/app/routes/relevant_emergency_news.json';
 
 
 // Sort by severity (recent dates first)

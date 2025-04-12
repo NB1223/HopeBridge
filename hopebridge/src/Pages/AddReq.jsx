@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import './AddReq.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import NavNgo from '../Components/NavNgo';
+import './AddReq.css';
+
 
 const AddReq = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ const AddReq = () => {
     quantity: '',
     donation_deadline: ''
   });
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,6 +36,7 @@ const AddReq = () => {
 
       if (response.ok) {
         alert('Request added successfully');
+        navigate('/ngo-dashboard');
       } else {
         alert(`Failed to add request: ${responseData.message || "Unknown error"}`);
       }

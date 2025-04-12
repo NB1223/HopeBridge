@@ -11,8 +11,9 @@ function NavbarComponent() {
         </Link>
         <nav className="nav">
           <Link to="/About_Us" className="nav-link">About Us</Link>
-          <Link to="/Donate" className="nav-link">Donate</Link>  
+          {/* <Link to="/Donate" className="nav-link">Donate</Link>   */}
           <Link to="/Partnered_NGOs" className="nav-link">Partnered NGOs</Link>
+          <Link to="/Donor_Dashboard" className="nav-link">Dashboard</Link>
         </nav>
       </div>
     </div>

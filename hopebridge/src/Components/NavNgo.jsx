@@ -14,6 +14,7 @@ function NavNgo() {
           <Link to="/Notifications" className="nav-link">Notifications</Link>  
           <Link to="/add-request" className="nav-link">Add Request</Link>  
           <Link to="/Partnered_NGOs" className="nav-link">Partnered NGOs</Link>
+          <Link to="/ngo-dashboard" className="nav-link">Dashboard</Link>
         </nav>
       </div>
     </div>

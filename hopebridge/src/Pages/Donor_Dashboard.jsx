@@ -61,6 +61,7 @@ const DonorDashboard = () => {
       <div className="card-container">
         {requests.map((request) => (
           <div className="donation-card" key={request.request_id}>
+            <p className='category'>{request.request_id}</p>
             <h3 className="ngo-name">{request.ngo_name}</h3>
             <p className="category">Category: {request.request_type}</p>
             <p className="amount">
@@ -75,7 +76,8 @@ const DonorDashboard = () => {
               onClick={() => navigate('/Donate', {
                 state: { 
                   ngo: request.ngo_name, 
-                  donatingItems: request.request_type 
+                  donatingItems: request.request_type,
+                  request_id: request.request_id
                 }
               })}
             >

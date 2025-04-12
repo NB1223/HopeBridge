@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import './TrackReq.css';
+import NavNgo from '../Components/NavNgo';
+import './TrackReq.css';
 
 const TrackReq = () => {
   const [requests, setRequests] = useState([]);
@@ -8,7 +9,7 @@ const TrackReq = () => {
   // Fetch NGO's requests
   const fetchRequests = async () => {
     try {
-      const response = await fetch(`/ngo/requests/${uniqueId}`);
+      const response = await fetch(`http://127.0.0.1:5000/ngo/requests/${uniqueId}`);
       const data = await response.json();
 
       // Check for empty data or errors
@@ -32,6 +33,7 @@ const TrackReq = () => {
 
   return (
     <div className="track-requests">
+      <NavNgo/>
       <h2>Your NGO's Requests</h2>
       <div className="request-list">
         {requests.length > 0 ? (
